@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PeakPoint — National Online Debate Championship</title>
+  <style>
+    :root{
+      --brand-dark:#0f1724;
+      --brand-blue:#112e66;
+      --brand-gold:#f6b042;
+      --accent:#c33764;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, Poppins, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,var(--brand-blue), #6b2b7a);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit}
+    header{
+      padding:28px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      max-width:1200px;
+      margin:0 auto;
+    }
+    /* Logo */
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo-mark{
+      width:56px;height:56px;border-radius:10px;
+      background: linear-gradient(135deg,var(--brand-gold),#ffd27a);
+      display:flex;align-items:center;justify-content:center;color:var(--brand-dark);font-weight:700;font-size:20px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    }
+    .logo-text{font-weight:700;font-size:20px;letter-spacing:0.4px}
+    nav{display:flex;gap:12px;align-items:center}
+    .nav-link{padding:8px 12px;border-radius:8px;color:rgba(255,255,255,0.9);text-decoration:none;font-weight:600}
+    .nav-cta{background:var(--brand-gold);color:var(--brand-dark);padding:10px 16px;border-radius:999px;font-weight:700}
+    /* Hero */
+    .hero{
+      max-width:1200px;margin:0 auto;padding:40px 20px 36px;
+      display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:18px;padding:34px;backdrop-filter: blur(6px);box-shadow:0 10px 40px rgba(2,6,23,0.6);
+    }
+    .eyebrow{color:var(--muted);font-weight:700;margin-bottom:12px}
+    h1{margin:0;font-size:32px;line-height:1.05}
+    p.lead{color:#e6eefc;margin-top:14px}
+    .hero-cta{margin-top:20px;display:flex;gap:12px;align-items:center}
+    .btn{background:var(--brand-gold);color:var(--brand-dark);padding:12px 18px;border-radius:999px;font-weight:800;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff}
+    /* Stats / small */
+    .stats{display:flex;gap:12px;margin-top:18px}
+    .stat{background:var(--glass);padding:10px 12px;border-radius:12px;font-weight:700}
+    /* Right panel */
+    .hero-side{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
+    .countdown{display:flex;gap:8px;justify-content:center;margin-top:6px}
+    .time-box{background:rgba(0,0,0,0.35);padding:12px 10px;border-radius:10px;min-width:64px;text-align:center}
+    .time-box .num{font-size:20px;font-weight:800}
+    .time-label{font-size:12px;color:var(--muted)}
+    /* Sections */
+    main{max-width:1200px;margin:28px auto;padding:20px;display:grid;gap:28px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--glass);padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
+    h2.section-title{margin:0 0 12px 0;font-size:20px;color:#fff}
+    /* Timeline */
+    .timeline{display:flex;flex-direction:column;gap:14px}
+    .timeline-item{display:flex;gap:12px;align-items:flex-start}
+    .timeline-dot{width:12px;height:12px;border-radius:50%;background:var(--brand-gold);margin-top:6px}
+    .timeline-content{font-size:15px;color:#e8eefc}
+    /* Prizes */
+    .prize-grid{display:flex;gap:12px;flex-wrap:wrap}
+    .prize{flex:1 1 220px;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:18px;border-radius:12px}
+    .prize h4{margin:0 0 8px 0;color:var(--brand-gold)}
+    /* FAQ */
+    .faq{display:grid;gap:8px}
+    details{background:var(--glass);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    details summary{font-weight:700}
+    /* Partners */
+    .partners{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .partner{background:rgba(255,255,255,0.04);padding:10px 14px;border-radius:8px;color:var(--muted);font-weight:700}
+    /* Contact */
+    .contact{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .contact a{color:var(--brand-gold);font-weight:700;text-decoration:none}
+    /* Footer */
+    footer.site{margin-top:30px;padding:32px 20px;background:rgba(2,6,23,0.45);text-align:center;color:rgba(255,255,255,0.8)}
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:24px}
+      .grid-3{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:flex-start}
+      nav{margin-top:12px}
+      .hero-side{order:2}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-mark">PP</div>
+      <div>
+        <div class="logo-text">PeakPoint</div>
+        <div style="font-size:12px;color:var(--muted)">National Online Debate Championship</div>
+      </div>
+    </div>
+
+    <nav>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#timeline">Timeline</a>
+      <a class="nav-link" href="#prizes">Prizes</a>
+      <a class="nav-link" href="#faq">FAQ</a>
+      <a class="nav-cta" href="#" onclick="openModal()">Register</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">PeakPoint • October 2025 (Tentative)</div>
+      <h1>PeakPoint: Where Voices Rise, Ideas Reign.</h1>
+      <p class="lead">A national online debate platform bringing together high school minds across India — structured rounds, professional judging, and certificates for all participants.</p>
+
+      <div class="hero-cta">
+        <button class="btn" onclick="openModal()">Register Now</button>
+        <button class="btn secondary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+      </div>
+
+      <div class="stats" aria-hidden="true">
+        <div class="stat">50+ Participants</div>
+        <div class="stat">10+ Cities</div>
+        <div class="stat">3 Expert Judges</div>
+      </div>
+    </div>
+
+    <aside class="hero-side">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong style="font-size:18px">Countdown to PeakPoint</strong>
+        <small style="color:var(--muted)">India-wide</small>
+      </div>
+
+      <div class="countdown" id="countdown" style="margin-top:12px">
+        <div class="time-box"><div class="num" id="days">00</div><div class="time-label">Days</div></div>
+        <div class="time-box"><div class="num" id="hours">00</div><div class="time-label">Hours</div></div>
+        <div class="time-box"><div class="num" id="mins">00</div><div class="time-label">Mins</div></div>
+        <div class="time-box"><div class="num" id="secs">00</div><div class="time-label">Secs</div></div>
+      </div>
+
+      <div style="margin-top:18px;background:rgba(0,0,0,0.25);padding:12px;border-radius:10px">
+        <div style="font-weight:700">Event Format</div>
+        <div style="color:var(--muted);font-size:14px;margin-top:6px">Prelims → Knockouts → Semifinal → Live Final (streamed)</div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Main content -->
+  <main>
+    <!-- About -->
+    <section id="about" class="card">
+      <h2 class="section-title">About PeakPoint</h2>
+      <p style="color:#e8eefc">PeakPoint is India’s student-led national online debate championship focused on building rigorous argumentation, leadership, and public speaking. Students from across cities participate in structured rounds judged by experienced adjudicators. Our goal: make debating accessible, credible, and impactful.</p>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline" class="card">
+      <h2 class="section-title">Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><strong>Registration Opens:</strong> Sept 25, 2025 (Early bird slots)</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><strong>Online Prelims:</strong> Oct 5–7, 2025</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><strong>Semi-Finals:</strong> Oct 12, 2025</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><strong>Grand Final (Live Stream):</strong> Oct 18, 2025</div></div>
+      </div>
+    </section>
+
+    <!-- Prizes -->
+    <section id="prizes" class="card">
+      <h2 class="section-title">Prizes & Recognition</h2>
+      <div class="prize-grid" style="margin-top:12px">
+        <div class="prize"><h4>Champion</h4><p>National Champion Trophy, Certificate, Feature on PeakPoint feed.</p></div>
+        <div class="prize"><h4>Runner-up</h4><p>Medal, Certificate & special judge feedback.</p></div>
+        <div class="prize"><h4>Best Speaker</h4><p>Certificate & public spotlight.</p></div>
+        <div class="prize"><h4>All Participants</h4><p>Digital participation certificate & judge comments.</p></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="card">
+      <h2 class="section-title">FAQ</h2>
+      <div class="faq" style="margin-top:12px">
+        <details><summary>Who can participate?</summary><div style="margin-top:8px;color:var(--muted)">High school students (Grades 9–12). Individual and team entries allowed.</div></details>
+        <details><summary>Is there a registration fee?</summary><div style="margin-top:8px;color:var(--muted)">Early-bird registrations are free. Standard registrations may include a small fee for certificate processing — to be announced.</div></details>
+        <details><summary>What is the debate format?</summary><div style="margin-top:8px;color:var(--muted)">Parliamentary-style rounds for prelims and knockout rounds; final is a live judged format.</div></details>
+        <details><summary>How are judges selected?</summary><div style="margin-top:8px;color:var(--muted)">Judges are experienced university debaters, coaches, and educators from across India.</div></details>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="card">
+      <h2 class="section-title">Partners & Supporters</h2>
+      <div class="partners" style="margin-top:12px">
+        <div class="partner">DPS (Sample)</div>
+        <div class="partner">City Debate Club</div>
+        <div class="partner">EduPlatform</div>
+        <div class="partner">Local College</div>
+      </div>
+      <div style="color:var(--muted);font-size:13px;margin-top:10px">Want to partner? Email <a href="mailto:peakpoint@youremail.com">peakpoint@youremail.com</a></div>
+    </section>
+
+    <!-- Contact -->
+    <section class="card">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact" style="margin-top:12px">
+        <div>Email: <a href="mailto:atishaygaur6@gmail.com">peakpoint@youremail.com</a></div>
+        <div>Instagram: <a href="https://instagram.com" target="_blank">@PeakPointDebate</a></div>
+        <div>WhatsApp (organizers): <a href="https://wa.me/919900000000" target="_blank">+91 99XXXXXXXX</a></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal with embedded Google Form -->
+  <div id="formModal" style="display:none;position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,0.7);align-items:center;justify-content:center">
+    <div style="width:95%;max-width:900px;height:85%;background:#fff;border-radius:12px;overflow:hidden;position:relative">
+      <button onclick="closeModal()" style="position:absolute;right:10px;top:10px;border:none;background:transparent;font-size:22px;cursor:pointer">✕</button>
+      <!-- Use embed link for best results (replace src below if you have the embed code) -->
+      <iframe id="gform" src="https://forms.gle/xGKdRdhJADc8aG7a9" style="width:100%;height:100%;border:none"></iframe>
+    </div>
+  </div>
+
+  <!-- Confirmation (after submission) -->
+  <div id="confirmation" style="display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1300;background:#fff;color:#000;padding:22px;border-radius:12px;box-shadow:0 10px 40px rgba(2,6,23,0.6);text-align:center">
+    <h3>Thanks for registering 🎉</h3>
+    <p>We received your response. Check your email for details soon.</p>
+    <button onclick="document.getElementById('confirmation').style.display='none'" style="margin-top:10px;padding:8px 14px;border-radius:8px;border:none;background:var(--brand-blue);color:#fff;cursor:pointer">Close</button>
+  </div>
+
+  <footer class="site">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="font-weight:700">PeakPoint • National Online Debate Championship</div>
+      <div style="margin-top:8px;color:var(--muted)">© 2025 PeakPoint. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+<script>
+  // ---------- Countdown ----------
+  // Set your target date (adjust to actual event date)
+  const target = new Date('October 18, 2025 10:00:00 GMT+0530').getTime();
+  function updateCountdown(){
+    const now = Date.now();
+    const diff = target - now;
+    if(diff <= 0){
+      document.getElementById('days').innerText='00';
+      document.getElementById('hours').innerText='00';
+      document.getElementById('mins').innerText='00';
+      document.getElementById('secs').innerText='00';
+      return;
+    }
+    const days = Math.floor(diff/(1000*60*60*24));
+    const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const mins = Math.floor((diff%(1000*60*60))/(1000*60));
+    const secs = Math.floor((diff%(1000*60))/1000);
+    document.getElementById('days').innerText = String(days).padStart(2,'0');
+    document.getElementById('hours').innerText = String(hours).padStart(2,'0');
+    document.getElementById('mins').innerText = String(mins).padStart(2,'0');
+    document.getElementById('secs').innerText = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown,1000);
+
+  // ---------- Modal open/close ----------
+  function openModal(){
+    document.getElementById('formModal').style.display='flex';
+  }
+  function closeModal(){
+    document.getElementById('formModal').style.display='none';
+  }
+
+  // ---------- Detect submission inside iframe ----------
+  // Note: perfect detection requires embedding the form iframe URL (Send -> <> embed).
+  const iframe = document.getElementById('gform');
+  iframe.addEventListener('load', function(){
+    try{
+      const href = iframe.contentWindow.location.href;
+      // Google Forms typically redirect to a url containing 'formResponse' or show 'viewform?usp=sf_link'
+      if(href.includes('formResponse') || href.includes('viewform?usp=sf_link') || href.includes('formresponse')){
+        // wait briefly to let google finish redirect then show confirmation
+        setTimeout(function(){
+          closeModal();
+          document.getElementById('confirmation').style.display='block';
+        },600);
+      }
+    }catch(e){
+      // cross-origin blocked in many browsers — safe to ignore
+    }
+  });
+
+  // Improve UX: close modal with ESC
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>
